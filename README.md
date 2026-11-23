@@ -13,3 +13,6 @@ Edita `data/metricas.js`: reemplaza cada `null` por el número y la diapositiva 
 ## Atajos
 ← → / espacio: navegar · G: vista general · N: notas del orador · F: pantalla completa · 1-9: saltar · Home/End.
 `?s=12` abre en la diapositiva 12.
+
+## Tiempos según la pauta (20 min)
+Tema y objetivos 2' (diap. 2-7) · Audiencia 3' (8) · Metodología y fuentes 4' (9-10) · Producto 5' (11-15) · Ética e IA 3' (16-18) · Mirada diferenciadora y cierre 3' (19-22). Las notas (N) marcan cada bloque.
