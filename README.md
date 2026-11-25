@@ -1,18 +1,39 @@
-# Sensastreaming · Defensa (presentación web)
+# Sensastreaming
 
-## Subir a GitHub Pages
-1. En tu repositorio del sitio crea la carpeta `defensa/` y sube TODO el contenido de esta carpeta (index.html, css/, js/, data/, assets/, fonts/).
-2. Quedará en: https://sensastreaming.github.io/aarea68/defensa/
+Plataforma demostrativa tipo streaming (estilo Netflix/Prime Video) para publicar en GitHub Pages. 6 archivos, sin dependencias de build.
 
-## Incrustar (iframe)
-<iframe src="https://sensastreaming.github.io/aarea68/defensa/" width="960" height="540" style="border:0;aspect-ratio:16/9;max-width:100%" allow="fullscreen; autoplay" allowfullscreen loading="lazy"></iframe>
+## Publicar en GitHub Pages
 
-## Métricas de redes
-Edita `data/metricas.js`: reemplaza cada `null` por el número y la diapositiva 19 se actualiza con animación.
+1. Crea un repositorio nuevo en GitHub (público, o privado con GitHub Pro).
+2. Sube estos 6 archivos a la raíz del repo (o a una carpeta `docs/` si prefieres).
+3. Ve a **Settings → Pages**.
+4. En "Source" elige la rama (`main`) y la carpeta (`/root` o `/docs`, según dónde subiste los archivos).
+5. Guarda. GitHub entrega una URL tipo `https://tuusuario.github.io/tu-repo/` en 1-2 minutos.
 
-## Atajos
-← → / espacio: navegar · G: vista general · N: notas del orador · F: pantalla completa · 1-9: saltar · Home/End.
-`?s=12` abre en la diapositiva 12.
+No hace falta `npm install` ni proceso de build: son archivos estáticos.
 
-## Tiempos según la pauta (20 min)
-Tema y objetivos 2' (diap. 2-7) · Audiencia 3' (8) · Metodología y fuentes 4' (9-10) · Producto 5' (11-15) · Ética e IA 3' (16-18) · Mirada diferenciadora y cierre 3' (19-22). Las notas (N) marcan cada bloque.
+## Estructura
+
+| Archivo | Contenido |
+|---|---|
+| `index.html` | Home: splash screen, hero, carrusel de "Destacados" |
+| `reportajes.html` | Catálogo completo con tabs de categoría |
+| `acerca-de.html` | Quiénes somos + fotos del equipo |
+| `podcast.html` | Placeholder "Próximamente" |
+| `styles.css` | Todo el estilo visual, tokens de color en `:root` |
+| `script.js` | Toda la lógica de interacción (dividida en bloques independientes) |
+
+## Cosas fáciles de editar
+
+- **Los 4 reportajes** (título, imagen, video de YouTube, categoría): en cada `.html`, cada `<article class="card" data-yt="ID_DE_YOUTUBE" data-category="...">`. El buscador del header usa su **propia** copia de estos mismos datos, como un array `REPORTAJES` al principio del bloque "buscador del header" en `script.js` — si cambias un reportaje en el HTML, actualiza también ese array para que el buscador no quede desincronizado.
+- **Colores**: en `styles.css`, dentro de `:root { ... }`. `--accent-crimson` es el dorado principal (el nombre quedó de una paleta anterior).
+- **Textos** (tagline, ticker, "acerca de"): directo en cada `.html`.
+- **Duración del splash screen**: variable `DURATION` (en milisegundos) al principio del bloque "pantalla de carga" en `script.js`.
+
+## Notas de mantenimiento
+
+- Todas las imágenes son de Imgur (`i.imgur.com`) — verifica que sigan activas después de una migración o mudanza de cuenta.
+- `script.js` está dividido en bloques independientes (uno por función: splash, buscador, categorías, reloj, tarjetas). Cada uno revisa si sus elementos existen antes de engancharse, por eso el mismo archivo sirve para las 4 páginas sin dar errores aunque no todas tengan los mismos elementos.
+- El `<div class="live-clock" id="liveClock">` en el header tiene ids internos (`#liveClockTime`, `#liveClockOffset`) de los que depende el reloj en vivo — no renombrarlos.
+
+© 2026 Sensastreaming — Plataforma demostrativa. Los videos enlazados pertenecen a sus respectivos autores en YouTube.
